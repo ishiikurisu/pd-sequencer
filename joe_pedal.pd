@@ -1,0 +1,74 @@
+#N canvas 350 113 310 225 10;
+#X obj 49 42 adc~;
+#X obj 49 164 dac~;
+#N canvas 485 137 450 364 joe_fuzz 1;
+#X obj 106 118 *~;
+#X obj 187 63 hsl 128 15 1 15 0 0 empty empty Gain -2 -8 0 10 -262144
+-1 -1 12700 1;
+#X obj 74 78 *~;
+#X obj 135 18 hsl 128 15 0 1 0 0 empty empty Input_level -2 -8 0 10
+-262144 -1 -1 5600 1;
+#X floatatom 128 68 5 0 0 0 - - -, f 5;
+#X floatatom 198 121 5 0 0 0 - - -, f 5;
+#X obj 254 171 hsl 128 15 0 1.7 0 0 empty empty Chop -2 -8 0 10 -262144
+-1 -1 5700 1;
+#X floatatom 253 232 5 0 0 0 - - -, f 5;
+#X obj 34 8 inlet~;
+#X obj 68 317 outlet~;
+#X obj 108 192 vcf~;
+#X obj 122 154 sig~;
+#X obj 137 122 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 179 154 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 113 267 clip~;
+#X obj 129 232 * -1;
+#X connect 0 0 10 0;
+#X connect 1 0 0 1;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 1;
+#X connect 3 0 4 0;
+#X connect 6 0 7 0;
+#X connect 6 0 15 0;
+#X connect 6 0 14 2;
+#X connect 8 0 2 0;
+#X connect 10 0 14 0;
+#X connect 11 0 10 1;
+#X connect 12 0 11 0;
+#X connect 13 0 10 2;
+#X connect 14 0 9 0;
+#X connect 15 0 14 1;
+#X restore 49 81 pd joe_fuzz;
+#N canvas 256 411 303 276 joe_eq 1;
+#X obj 23 19 inlet~;
+#X obj 25 223 outlet~;
+#X msg 78 18 clear;
+#X obj 87 156 hip~;
+#X obj 50 93 lop~;
+#X obj 111 54 hsl 128 15 0 20000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 700 1;
+#X obj 146 124 hsl 128 15 0 20000 0 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X floatatom 129 86 5 0 0 0 - - -, f 5;
+#X floatatom 153 168 5 0 0 0 - - -, f 5;
+#X floatatom 144 18 5 0 0 0 - - -, f 5;
+#X floatatom 176 86 5 0 0 0 - - -, f 5;
+#X text 167 36 low filter;
+#X text 195 106 high filter;
+#X connect 0 0 4 0;
+#X connect 2 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 1;
+#X connect 5 0 7 0;
+#X connect 6 0 3 1;
+#X connect 6 0 8 0;
+#X connect 9 0 5 0;
+#X connect 10 0 6 0;
+#X restore 64 118 pd joe_eq;
+#X connect 0 1 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 3 0 1 1;
